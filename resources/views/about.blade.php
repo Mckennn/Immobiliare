@@ -1,14 +1,18 @@
-<!DOCTYPE html>
-<html lang="en">
+{{-- On va étendre le fichier resources/view/layouts/app.blade.php --}}
+@extends('layouts/app')
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Laravel</title>
-</head>
+{{-- On met le contenu suivant dans le yield content --}}
+@section('content')
+   <h1>Hello {{$name}}</h1>
 
-<body>
-    <h1>Hello Laravellll</h1>
+    <ul>
+        @foreach ($bibis as $bibi)
+            <li>
+                {{-- @dump($loop) --}}
+                {{ $loop->index }} {{ $bibi }}
+            </li>
+        @endforeach
+    </ul>
 
     <h2>Blade simplifie le PHP</h2>
     <?php echo date('d/m/Y'); ?>
@@ -16,7 +20,7 @@
 
     <h2>If en Blade</h2>
     @if (1 === 1)
-        Je suis sun if
+        Je suis un if
     @endif
 
     <h2>Boucle en Blade</h2>
@@ -27,6 +31,4 @@
     <h2>Protection XSS en Blade</h2>
     {{ '<script>alert("toto")</script>' }}
     {!! '<h1>Pas de protection XSS<h1>' !!}
-</body>
-
-</html>
+@endsection
